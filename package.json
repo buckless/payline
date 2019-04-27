@@ -1,0 +1,24 @@
+{
+  "name": "payline",
+  "version": "1.0.0",
+  "description": "payline",
+  "author": "Buckless <contact@buckless.com> https://buckless.com",
+  "contributors": [
+    "Gabriel Juchault <gabriel@buckless.com>",
+    "Axel Mousset <axel@buckless.com>",
+    "Lucas Soulier <lucas@buckless.com>"
+  ],
+  "repository": "https://lab.buckless.com/buckless/buckless.git",
+  "homepage": "https://buckless.com",
+  "private": true,
+  "main": "index.js",
+  "scripts": {
+    "lint": "prettier --single-quote --write index.js"
+  },
+  "dependencies": {
+    "soap": "^0.27.1"
+  },
+  "devDependencies": {
+    "prettier": "1.17.0"
+  }
+}

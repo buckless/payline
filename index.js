@@ -6,13 +6,12 @@ const DEFAULT_WSDL = path.join(__dirname, 'WebPaymentAPI.v4.44.wsdl');
 
 module.exports = class Payline {
   constructor(user, pass, wsdl = DEFAULT_WSDL) {
-    if (!user || !pass || !contractNumber) {
-      throw new Error('All of user / pass / contractNumber should be defined');
+    if (!user || !pass) {
+      throw new Error('All of user / pass should be defined');
     }
 
     this.user = user;
     this.pass = pass;
-    this.contractNumber = contractNumber;
     this.wsdl = wsdl;
   }
 

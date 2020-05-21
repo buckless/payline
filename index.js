@@ -1,13 +1,13 @@
-const soap = require('soap');
-const path = require('path');
-const { promisify } = require('util');
+const soap = require("soap");
+const path = require("path");
+const { promisify } = require("util");
 
-const DEFAULT_WSDL = path.join(__dirname, 'WebPaymentAPI.v4.44.wsdl');
+const DEFAULT_WSDL = path.join(__dirname, "WebPaymentAPI.v4.60.wsdl");
 
 module.exports = class Payline {
   constructor(user, pass, wsdl = DEFAULT_WSDL) {
     if (!user || !pass) {
-      throw new Error('All of user / pass should be defined');
+      throw new Error("All of user / pass should be defined");
     }
 
     this.user = user;
@@ -37,9 +37,9 @@ module.exports = class Payline {
 
       return call(args);
     } catch (error) {
-      if (error.message === 'client[action] is not a function') {
+      if (error.message === "client[action] is not a function") {
         throw new Error(
-          'Action not found. See the methods payline.describe().'
+          "Action not found. See the methods payline.describe()."
         );
       } else {
         throw new Error(error.message);
@@ -52,4 +52,4 @@ module.exports = class Payline {
 
     return client.describe();
   }
-}
+};

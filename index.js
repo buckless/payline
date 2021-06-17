@@ -3,9 +3,12 @@ const path = require("path");
 const { promisify } = require("util");
 
 const DEFAULT_WSDL = path.join(__dirname, "WebPaymentAPI.v4.60.wsdl");
+const HOMOLOGATION_WSDL = path.join(__dirname, "WebPaymentAPI.v4.60.homologation.wsdl");
 
 module.exports = class Payline {
-  constructor(user, pass, wsdl = DEFAULT_WSDL) {
+  constructor(user, pass, environment = 'production', customWsdl) {
+    const wsdl = customWsdl || (environment === 'production' ? DEFAULT_WSDL : HOMOLOGATION_WSDL);
+  
     if (!user || !pass) {
       throw new Error("All of user / pass should be defined");
     }

@@ -1,3 +1,4 @@
+module.exports = `
 <?xml version="1.0" encoding="UTF-8"?>
 <wsdl:definitions targetNamespace="http://impl.ws.payline.experian.com" xmlns:impl="http://impl.ws.payline.experian.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns1="http://obj.ws.payline.experian.com">
   <wsdl:types>
@@ -3889,3 +3890,4 @@
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>
+`;

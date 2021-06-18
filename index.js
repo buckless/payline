@@ -1,14 +1,16 @@
 const soap = require("soap");
-const path = require("path");
+const wsdl = require("soap/lib/wsdl");
 const { promisify } = require("util");
 
-const DEFAULT_WSDL = path.join(__dirname, "WebPaymentAPI.v4.60.wsdl");
-const HOMOLOGATION_WSDL = path.join(__dirname, "WebPaymentAPI.v4.60.homologation.wsdl");
+const productionWsdl = require("./WebPaymentAPI.v4.60.wsdl");
+const homologationWsdl = require("./WebPaymentAPI.v4.60.homologation.wsdl");
 
 module.exports = class Payline {
-  constructor(user, pass, environment = 'production', customWsdl) {
-    const wsdl = customWsdl || (environment === 'production' ? DEFAULT_WSDL : HOMOLOGATION_WSDL);
-  
+  constructor(user, pass, environment = "production", customWsdl) {
+    const wsdl =
+      customWsdl ||
+      (environment === "production" ? productionWsdl : homologationWsdl);
+
     if (!user || !pass) {
       throw new Error("All of user / pass should be defined");
     }
@@ -23,9 +25,17 @@ module.exports = class Payline {
       return this.client;
     }
 
-    const createClient = promisify(soap.createClient.bind(soap));
+    const parsedWsdl = new wsdl.WSDL(wsdl, "https://example.com", {});
 
-    this.client = await createClient(this.wsdl);
+    await new Promise((resolve, reject) => {
+      parsedWsdl.onReady((err) => {
+        if (err) return reject(err);
+
+        resolve();
+      });
+    });
+
+    this.client = new soap.Client(parsedWsdl);
 
     this.client.setSecurity(new soap.BasicAuthSecurity(this.user, this.pass));
 

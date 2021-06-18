@@ -25,7 +25,7 @@ module.exports = class Payline {
       return this.client;
     }
 
-    const parsedWsdl = new wsdl.WSDL(wsdl, "https://example.com", {});
+    const parsedWsdl = new wsdl.WSDL(this.wsdl, "https://example.com", {});
 
     await new Promise((resolve, reject) => {
       parsedWsdl.onReady((err) => {

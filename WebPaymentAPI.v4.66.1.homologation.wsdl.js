@@ -37,6 +37,7 @@ module.exports = `
 						<element name="asynchronousRetryTimeout" nillable="true" type="xsd:string"/>
                         <element name="threeDSInfo" nillable="true" type="tns1:threeDSInfo"/>
                         <element name="merchantScore" nillable="true" type="xsd:string"/>
+                        <element name="skipSmartDisplay" nillable="true" type="xsd:boolean"/>
 					</sequence>
 				</complexType>
 			</element>
@@ -51,8 +52,8 @@ module.exports = `
 					</annotation>
 					<sequence>
 						<element name="result" nillable="false" type="tns1:result"/>
-						<element name="token" nillable="false" type="xsd:string"/>
-						<element name="redirectURL" nillable="false" type="xsd:string"/>
+						<element name="token" nillable="true" type="xsd:string"/>
+						<element name="redirectURL" nillable="true" type="xsd:string"/>
 						<element minOccurs="0" name="stepCode" nillable="true" type="xsd:string"/>
 						<element minOccurs="0" name="reqCode" nillable="true" type="xsd:string"/>
 						<element minOccurs="0" name="method" nillable="true" type="xsd:string"/>
@@ -104,6 +105,7 @@ module.exports = `
 						<element name="bankAccountData" nillable="true" type="tns1:bankAccountData"/>
 						<element name="subMerchant" nillable="true" type="tns1:subMerchant"/>
 						<element name="buyer" nillable="true" type="tns1:buyer"/>
+						<element name="linkedTransactionId" nillable="true" type="xsd:string"/>
 					</sequence>
 				</complexType>
 			</element>
@@ -153,6 +155,7 @@ module.exports = `
 						<element name="privateDataList" nillable="true" type="tns1:privateDataList"/>
 						<element name="contractNumber" nillable="false" type="xsd:string"/>
 						<element name="linkedTransactionId" nillable="true" type="xsd:string"/>
+						<element minOccurs="0" name="authentication3DSecure" nillable="true" type="tns1:authentication3DSecure"/>
 						<element name="resultContainer" nillable="true" type="xsd:string"/>
 					</sequence>
 				</complexType>
@@ -249,6 +252,7 @@ module.exports = `
 					<sequence>
 						<element name="result" nillable="false" type="tns1:result"/>
 						<element name="transaction" nillable="false" type="tns1:transaction"/>
+						<element minOccurs="0" name="miscData" nillable="true" type="tns1:miscData"/>
 					</sequence>
 				</complexType>
 			</element>
@@ -265,6 +269,10 @@ module.exports = `
 						<element name="transactionID" nillable="false" type="xsd:string"/>
 						<element name="comment" nillable="true" type="xsd:string"/>
 						<element name="media" nillable="true" type="xsd:string"/>
+						<element name="amount" nillable="true" type="xsd:string"/>
+						<element name="currency" nillable="true" type="xsd:string"/>
+						<element minOccurs="0" name="privateDataList" nillable="true" type="tns1:privateDataList"/>
+						<element name="sequenceNumber" nillable="true" type="xsd:string"/>
 					</sequence>
 				</complexType>
 			</element>
@@ -340,6 +348,7 @@ module.exports = `
 						<element name="authentication3DSecure" nillable="true" type="tns1:authentication3DSecure"/>
 						<element name="media" nillable="true" type="xsd:string"/>
 						<element name="contractNumberWalletList" nillable="true" type="tns1:contractNumberWalletList"/>
+						<element name="transactionID" nillable="true" type="xsd:string"/>
 					</sequence>
 				</complexType>
 			</element>
@@ -356,7 +365,7 @@ module.exports = `
 						<element name="result" nillable="false" type="tns1:result"/>
 						<element name="card" type="tns1:cardOut"/>
 						<element name="extendedCard" type="tns1:extendedCardType"/>
-						<element name="contractNumberWalletList" nillable="true" type="tns1:contractNumberWalletList"/>
+						<element minOccurs="0" name="contractNumberWalletList" nillable="true" type="tns1:contractNumberWalletList"/>
 						<element name="fraudResultDetails" nillable="true" type="tns1:fraudResultDetails"/>
 					</sequence>
 				</complexType>
@@ -381,6 +390,7 @@ module.exports = `
 						<element name="authentication3DSecure" nillable="true" type="tns1:authentication3DSecure"/>
 						<element name="media" nillable="true" type="xsd:string"/>
 						<element name="contractNumberWalletList" nillable="true" type="tns1:contractNumberWalletList"/>
+						<element name="transactionID" nillable="true" type="xsd:string"/>
 					</sequence>
 				</complexType>
 			</element>
@@ -397,7 +407,7 @@ module.exports = `
 						<element name="result" nillable="false" type="tns1:result"/>
 						<element name="card" type="tns1:cardOut"/>
 						<element name="extendedCard" type="tns1:extendedCardType"/>
-						<element name="contractNumberWalletList" nillable="true" type="tns1:contractNumberWalletList"/>
+						<element minOccurs="0" name="contractNumberWalletList" nillable="true" type="tns1:contractNumberWalletList"/>
 					</sequence>
 				</complexType>
 			</element>
@@ -435,7 +445,7 @@ module.exports = `
 						<element name="disableDate" nillable="true" type="xsd:string"/>
 						<element name="privateDataList" nillable="true" type="tns1:privateDataList"/>
 						<element name="extendedCard" nillable="true" type="tns1:extendedCardType"/>
-						<element name="contractNumberWalletList" nillable="true" type="tns1:contractNumberWalletList"/>
+						<element minOccurs="0" name="contractNumberWalletList" nillable="true" type="tns1:contractNumberWalletList"/>
 						<element name="media" nillable="true" type="xsd:string"/>
 					</sequence>
 				</complexType>
@@ -549,10 +559,12 @@ module.exports = `
 						<element name="walletId" nillable="false" type="xsd:string"/>
 						<element name="cardInd" nillable="true" type="xsd:string"/>
 						<element name="cvx" nillable="true" type="xsd:string"/>
+						<element minOccurs="0" name="recurring" nillable="true" type="tns1:recurring"/>
 						<element name="privateDataList" nillable="true" type="tns1:privateDataList"/>
 						<element name="media" nillable="true" type="xsd:string"/>
 						<element name="authentication3DSecure" nillable="true" type="tns1:authentication3DSecure"/>
 						<element name="subMerchant" nillable="true" type="tns1:subMerchant"/>
+						<element name="linkedTransactionId" nillable="true" type="xsd:string"/>
 					</sequence>
 				</complexType>
 			</element>
@@ -568,6 +580,8 @@ module.exports = `
 						<element name="result" nillable="false" type="tns1:result"/>
 						<element name="transaction" nillable="true" type="tns1:transaction"/>
 						<element name="authorization" nillable="true" type="tns1:authorization"/>
+						<element name="authentication3DSecure" nillable="true" type="tns1:authentication3DSecure"/>
+						<element name="linkedTransactionId" nillable="true" type="xsd:string"/>
 					</sequence>
 				</complexType>
 			</element>
@@ -588,9 +602,12 @@ module.exports = `
 						<element name="walletId" nillable="false" type="xsd:string"/>
 						<element name="cardInd" nillable="true" type="xsd:string"/>
 						<element name="order" nillable="true" type="tns1:order"/>
+						<element minOccurs="0" name="recurring" nillable="true" type="tns1:recurring"/>
+						<element minOccurs="0" name="authentication3DSecure" nillable="true" type="tns1:authentication3DSecure"/>
 						<element name="privateDataList" nillable="true" type="tns1:privateDataList"/>
 						<element name="media" nillable="true" type="xsd:string"/>
 						<element name="subMerchant" nillable="true" type="tns1:subMerchant"/>
+						<element name="linkedTransactionId" nillable="true" type="xsd:string"/>
 					</sequence>
 				</complexType>
 			</element>
@@ -624,10 +641,13 @@ module.exports = `
 						<element name="scheduledDate" nillable="false" type="xsd:string"/>
 						<element name="walletId" nillable="false" type="xsd:string"/>
 						<element name="cardInd" nillable="true" type="xsd:string"/>
+						<element name="cvx" nillable="true" type="xsd:string"/>
 						<element name="recurring" nillable="false" type="tns1:recurring"/>
 						<element name="privateDataList" nillable="true" type="tns1:privateDataList"/>
 						<element name="order" nillable="true" type="tns1:order"/>
 						<element name="media" nillable="true" type="xsd:string"/>
+						<element minOccurs="0" name="authentication3DSecure" nillable="true" type="tns1:authentication3DSecure"/>
+						<element name="linkedTransactionId" nillable="true" type="xsd:string"/>
 					</sequence>
 				</complexType>
 			</element>
@@ -873,7 +893,7 @@ module.exports = `
 						<element name="extendedCard" type="tns1:extendedCardType"/>
 						<element name="media" nillable="true" type="xsd:string"/>
 						<element name="numberOfAttempt" nillable="true" type="xsd:string"/>
-						<element name="contractNumberWalletList" nillable="true" type="tns1:contractNumberWalletList"/>
+						<element minOccurs="0" name="contractNumberWalletList" nillable="true" type="tns1:contractNumberWalletList"/>
 					</sequence>
 				</complexType>
 			</element>
@@ -962,11 +982,15 @@ module.exports = `
 						<element name="associatedTransactionsList" nillable="true" type="tns1:associatedTransactionsList"/>
 						<element name="statusHistoryList" nillable="true" type="tns1:statusHistoryList"/>
 						<element name="media" nillable="true" type="xsd:string"/>
+						<element name="customerMedia" nillable="false" type="tns1:media"/>
 						<element name="contractNumber" nillable="false" type="xsd:string"/>
 						<element minOccurs="0" name="paymentAdditionalList" nillable="true" type="tns1:paymentAdditionalList"/>
 						<element name="bankAccountData" nillable="true" type="tns1:bankAccountData"/>
 						<element name="subMerchant" nillable="true" type="tns1:subMerchant"/>
 						<element minOccurs="0" name="authentication3DSecure" nillable="true" type="tns1:authentication3DSecure"/>
+						<element name="pointOfSell" nillable="false" type="tns1:pointOfSell"/>
+						<element name="routingRule" nillable="false" type="tns1:routingRule"/>
+						<element name="linkedTransactionId" nillable="true" type="xsd:string"/>
 					</sequence>
 				</complexType>
 			</element>
@@ -982,8 +1006,8 @@ module.exports = `
 						<element name="version" nillable="false" type="xsd:string"/>
 						<element name="transactionId" nillable="true" type="xsd:string"/>
 						<element name="orderRef" nillable="true" type="xsd:string"/>
-						<element name="startDate" nillable="true" type="xsd:string"/>
-						<element name="endDate" nillable="true" type="xsd:string"/>
+						<element name="startDate" type="xsd:string"/>
+						<element name="endDate" type="xsd:string"/>
 						<element name="contractNumber" nillable="true" type="xsd:string"/>
 						<element name="authorizationNumber" nillable="true" type="xsd:string"/>
 						<element name="returnCode" nillable="true" type="xsd:string"/>
@@ -999,6 +1023,10 @@ module.exports = `
 						<element name="walletId" nillable="true" type="xsd:string"/>
 						<element name="sequenceNumber" nillable="true" type="xsd:string"/>
 						<element name="token" nillable="true" type="xsd:string"/>
+						<element name="pointOfSellId" nillable="true" type="xsd:string"/>
+						<element name="cardNetwork" nillable="true" type="xsd:string"/>
+						<element name="threeDSecured" nillable="true" type="xsd:string"/>
+						<element name="customerMediaId" nillable="true" type="xsd:string"/>
 					</sequence>
 				</complexType>
 			</element>
@@ -1110,99 +1138,6 @@ module.exports = `
 					</sequence>
 				</complexType>
 			</element>
-			<element name="createMerchantRequest">
-				<complexType>
-					<annotation>
-						<documentation>
-							This element is the request for the
-							createMerchant
-							method
-						</documentation>
-					</annotation>
-					<sequence>
-						<element name="corporateName" nillable="true" type="xsd:string"/>
-						<element name="publicName" nillable="true" type="xsd:string"/>
-						<element name="currency">
-							<annotation>
-								<documentation>currency in ISO 4217 numeric format
-								</documentation>
-							</annotation>
-							<simpleType>
-								<restriction base="xsd:string">
-									<length value="3"/>
-								</restriction>
-							</simpleType>
-						</element>
-						<element name="nationalID" nillable="true">
-							<annotation>
-								<documentation>unique national merchant ID</documentation>
-							</annotation>
-							<complexType>
-								<choice>
-									<element name="SIRET">
-										<annotation>
-											<documentation>Systeme d identification du Repertoire des
-												ENtreprises
-											</documentation>
-										</annotation>
-										<simpleType>
-											<restriction base="xsd:string">
-												<length value="14"/>
-											</restriction>
-										</simpleType>
-									</element>
-									<element name="other" type="xsd:string">
-										<annotation>
-											<documentation>to use if country is not France
-											</documentation>
-										</annotation>
-									</element>
-								</choice>
-							</complexType>
-						</element>
-						<element name="distributor" nillable="true" type="xsd:string">
-							<annotation>
-								<documentation>Payline Distributor ID</documentation>
-							</annotation>
-						</element>
-						<element name="merchantAddress" nillable="true" type="tns1:addressInterlocutor"/>
-						<element name="businessInterlocutor" nillable="true" type="tns1:interlocutor"/>
-						<element name="technicalInterlocutor" nillable="true" type="tns1:interlocutor"/>
-						<element name="subscription" nillable="true" type="tns1:subscription"/>
-						<element name="poss" nillable="true">
-							<annotation>
-								<documentation>list of point of sell</documentation>
-							</annotation>
-							<complexType>
-								<sequence>
-									<element maxOccurs="unbounded" minOccurs="0" name="pos" nillable="true" type="tns1:pointOfSell"/>
-								</sequence>
-							</complexType>
-						</element>
-						<element name="partner" nillable="true" type="xsd:string">
-							<annotation>
-								<documentation>Billing partner. 1:monext, 2:cetib, 3:payline.com
-								</documentation>
-							</annotation>
-						</element>
-					</sequence>
-				</complexType>
-			</element>
-			<element name="createMerchantResponse">
-				<complexType>
-					<annotation>
-						<documentation>
-							This element is the reponse from the
-							createMerchant
-							method
-						</documentation>
-					</annotation>
-					<sequence>
-						<element name="result" nillable="false" type="tns1:result"/>
-						<element name="connectionData" nillable="false" type="tns1:connectionData"/>
-					</sequence>
-				</complexType>
-			</element>
 			<element name="doScoringChequeRequest">
 				<complexType>
 					<annotation>
@@ -1276,7 +1211,7 @@ module.exports = `
 						<element name="version" nillable="false" type="xsd:string"/>
 						<element name="transactionID" nillable="false" type="xsd:string"/>
 						<element name="payment" nillable="false" type="tns1:payment"/>
-						<element name="order" nillable="true" type="tns1:order"/>
+						<element name="order" nillable="false" type="tns1:order"/>
 						<element name="privateDataList" nillable="true" type="tns1:privateDataList"/>
 						<element name="media" nillable="true" type="xsd:string"/>
 					</sequence>
@@ -1565,6 +1500,7 @@ module.exports = `
 						<element name="comment" nillable="true" type="xsd:string"/>
 						<element name="transactionID" nillable="true" type="xsd:string"/>
 						<element name="orderID" nillable="false" type="xsd:string"/>
+						<element name="privateDataList" nillable="true" type="tns1:privateDataList"/>
 					</sequence>
 				</complexType>
 			</element>
@@ -1579,6 +1515,7 @@ module.exports = `
 					<sequence>
 						<element name="result" nillable="false" type="tns1:result"/>
 						<element name="transaction" nillable="false" type="tns1:transaction"/>
+						<element name="privateDataList" nillable="true" type="tns1:privateDataList"/>
 					</sequence>
 				</complexType>
 			</element>
@@ -1641,6 +1578,7 @@ module.exports = `
 					<element minOccurs="0" name="expirationDate" nillable="true" type="xsd:string"/>
 					<element minOccurs="0" name="cardholder" nillable="true" type="xsd:string"/>
 					<element minOccurs="0" name="token" nillable="true" type="xsd:string"/>
+					<element minOccurs="0" name="panType" nillable="true" type="xsd:string"/>
 				</sequence>
 			</complexType>
 
@@ -1750,6 +1688,17 @@ module.exports = `
 					<element name="value" nillable="false" type="xsd:string"/>
 				</sequence>
 			</complexType>
+			<complexType name="miscDataPair">
+				<annotation>
+					<documentation>
+						This element contains map data formatted as key/value
+					</documentation>
+				</annotation>
+				<sequence>
+					<element name="key" type="xsd:string"/>
+					<element name="value" nillable="true" type="xsd:string"/>
+				</sequence>
+			</complexType>
 			<complexType name="transaction">
 				<annotation>
 					<documentation>
@@ -1773,6 +1722,13 @@ module.exports = `
 					<element minOccurs="0" name="externalWalletContractNumber" nillable="true" type="xsd:string"/>
 					<element minOccurs="0" name="partnerAdditionalData" nillable="true" type="xsd:string"/>
 					<element minOccurs="0" name="avs" nillable="true" type="tns1:avs"/>
+					<element minOccurs="0" name="customerId" nillable="true" type="xsd:string"/>
+					<element minOccurs="0" name="type" nillable="false" type="xsd:string"/>
+					<element minOccurs="0" name="orderReference" nillable="true" type="xsd:string"/>
+                    <element minOccurs="0" name="payment" nillable="true" type="tns1:payment"/>
+                    <element minOccurs="0" name="pointOfSell" nillable="true" type="tns1:pointOfSell"/>
+					<element minOccurs="0" name="card" nillable="true" type="tns1:cardOut"/>
+					<element minOccurs="0" name="extendedCard" nillable="true" type="tns1:extendedCardType"/>
 				</sequence>
 			</complexType>
 			<complexType name="scoring">
@@ -1816,7 +1772,7 @@ module.exports = `
 					<element name="currency" nillable="false" type="xsd:string"/>
 					<element name="action" nillable="false" type="xsd:string"/>
 					<element name="mode" nillable="false" type="xsd:string"/>
-					<element name="contractNumber" nillable="false" type="xsd:string"/>
+					<element minOccurs="0" name="contractNumber" nillable="true" type="xsd:string"/>
 					<element minOccurs="0" name="differedActionDate" nillable="true" type="xsd:string"/>
 					<element minOccurs="0" name="method" nillable="true" type="xsd:string"/>
 					<element minOccurs="0" name="softDescriptor" nillable="true" type="xsd:string"/>
@@ -1835,6 +1791,8 @@ module.exports = `
 				<sequence>
 					<element name="number" nillable="false" type="xsd:string"/>
 					<element name="date" nillable="false" type="xsd:string"/>
+					<element name="authorizedAmount" nillable="true" type="xsd:string"/>
+					<element name="authorizedCurrency" nillable="true" type="xsd:string"/>
 				</sequence>
 			</complexType>
 			<complexType name="paymentData">
@@ -1867,7 +1825,7 @@ module.exports = `
 					<element minOccurs="0" name="cardPresent" nillable="true" type="xsd:string"/>
 					<element minOccurs="0" name="cardholder" nillable="true" type="xsd:string"/>
 					<element minOccurs="0" name="token" nillable="true" type="xsd:string"/>
-					<element minOccurs="0" name="paymentData" nillable="true" type="tns1:paymentData"/>
+					<element minOccurs="0" name="paymentData" nillable="false" type="tns1:paymentData"/>
 				</sequence>
 			</complexType>
 			<complexType name="buyer">
@@ -2008,6 +1966,16 @@ module.exports = `
 				</annotation>
 				<sequence>
 					<element maxOccurs="100" minOccurs="0" name="privateData" type="tns1:privateData"/>
+				</sequence>
+			</complexType>
+			<complexType name="miscData">
+				<annotation>
+					<documentation>
+						An array of pairs
+					</documentation>
+				</annotation>
+				<sequence>
+					<element maxOccurs="100" minOccurs="0" name="miscDataPair" type="tns1:miscDataPair"/>
 				</sequence>
 			</complexType>
 
@@ -2327,18 +2295,6 @@ module.exports = `
 					<element name="endDate" nillable="true" type="xsd:dateTime"/>
 				</sequence>
 			</complexType>
-			<complexType name="subscription">
-				<annotation>
-					<documentation>
-						This element contains information about the payline
-						package subscribed by the merchant
-					</documentation>
-				</annotation>
-				<sequence>
-					<element name="id" type="xsd:string"/>
-					<element maxOccurs="unbounded" minOccurs="0" name="option" type="tns1:option"/>
-				</sequence>
-			</complexType>
 			<complexType name="iban">
 				<annotation>
 					<documentation>
@@ -2481,6 +2437,7 @@ module.exports = `
 					</documentation>
 				</annotation>
 				<sequence>
+					<element minOccurs="0" name="id" nillable="true" type="xsd:string"/>
 					<element name="siret" nillable="true" type="xsd:string"/>
 					<element name="codeMcc" nillable="true">
 						<annotation>
@@ -2523,6 +2480,7 @@ module.exports = `
 							</sequence>
 						</complexType>
 					</element>
+					<element minOccurs="0" name="reference" nillable="true" type="xsd:string"/>
 				</sequence>
 			</complexType>
 			<complexType name="virtualTerminal">
@@ -2631,6 +2589,7 @@ module.exports = `
 					<element name="amount" nillable="false" type="xsd:string"/>
 					<element name="status" nillable="false" type="xsd:string"/>
 					<element name="originTransactionId" nillable="false" type="xsd:string"/>
+					<element minOccurs="0" name="currency" nillable="true" type="xsd:string"/>
 				</sequence>
 			</complexType>
 
@@ -2660,6 +2619,10 @@ module.exports = `
 					<element name="fees" nillable="false" type="xsd:string"/>
 					<element name="status" nillable="false" type="xsd:string"/>
 					<element name="originTransactionId" nillable="false" type="xsd:string"/>
+					<element minOccurs="0" name="amountValue" nillable="true" type="xsd:string"/>
+					<element minOccurs="0" name="amountCurrency" nillable="true" type="xsd:string"/>
+					<element minOccurs="0" name="feesValue" nillable="true" type="xsd:string"/>
+					<element minOccurs="0" name="feesCurrency" nillable="true" type="xsd:string"/>
 				</sequence>
 			</complexType>
 
@@ -2826,6 +2789,32 @@ module.exports = `
 					<element name="subMerchantState" nillable="true" type="xsd:string"/>
 					<element name="subMerchantEmailAddress" nillable="true" type="xsd:string"/>
 					<element name="subMerchantPhoneNumber" nillable="true" type="xsd:string"/>
+				</sequence>
+			</complexType>
+			<complexType name="media">
+				<annotation>
+					<documentation>
+						This element contains information about the customer media
+					</documentation>
+				</annotation>
+				<sequence>
+					<element name="id" nillable="false" type="xsd:string" wsdl:required="true"/>
+					<element minOccurs="1" name="label" nillable="false" type="xsd:string"/>
+					<element minOccurs="1" name="operatingSystem" nillable="false" type="xsd:string"/>
+					<element minOccurs="1" name="browser" nillable="false" type="xsd:string"/>
+					<element minOccurs="1" name="userAgent" nillable="false" type="xsd:string"/>
+				</sequence>
+			</complexType>
+			<complexType name="routingRule">
+				<annotation>
+					<documentation>
+						This element contains information about a routingRule associated with a Payment Facilitator
+					</documentation>
+				</annotation>
+				<sequence>
+					<element minOccurs="0" name="id" nillable="true" type="xsd:string"/>
+					<element minOccurs="0" name="sourceContractNumber" nillable="true" type="xsd:string"/>
+					<element minOccurs="0" name="targetContractNumber" nillable="true" type="xsd:string"/>
 				</sequence>
 			</complexType>
             <complexType name="threeDSInfo">
@@ -3057,16 +3046,8 @@ module.exports = `
     <wsdl:part name="parameters" element="impl:disableWalletRequest">
     </wsdl:part>
   </wsdl:message>
-  <wsdl:message name="createMerchantRequest">
-    <wsdl:part name="parameters" element="impl:createMerchantRequest">
-    </wsdl:part>
-  </wsdl:message>
   <wsdl:message name="getEncryptionKeyResponse">
     <wsdl:part name="parameters" element="impl:getEncryptionKeyResponse">
-    </wsdl:part>
-  </wsdl:message>
-  <wsdl:message name="createMerchantResponse">
-    <wsdl:part name="parameters" element="impl:createMerchantResponse">
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="getMerchantSettingsRequest">
@@ -3394,12 +3375,6 @@ module.exports = `
       <wsdl:output name="verifyAuthenticationResponse" message="impl:verifyAuthenticationResponse">
     </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="createMerchant">
-      <wsdl:input name="createMerchantRequest" message="impl:createMerchantRequest">
-    </wsdl:input>
-      <wsdl:output name="createMerchantResponse" message="impl:createMerchantResponse">
-    </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="doScoringCheque">
       <wsdl:input name="doScoringChequeRequest" message="impl:doScoringChequeRequest">
     </wsdl:input>
@@ -3669,15 +3644,6 @@ module.exports = `
         <wsdlsoap:body use="literal"/>
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="createMerchant">
-      <wsdlsoap:operation soapAction="createMerchant"/>
-      <wsdl:input>
-        <wsdlsoap:body use="literal"/>
-      </wsdl:input>
-      <wsdl:output>
-        <wsdlsoap:body use="literal"/>
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="doScoringCheque">
       <wsdlsoap:operation soapAction="doScoringCheque"/>
       <wsdl:input>
@@ -3884,9 +3850,9 @@ module.exports = `
       <wsdlsoap:address location="https://homologation.payline.com/V4/services/ExtendedAPI"/>
     </wsdl:port>
   </wsdl:service>
-  <wsdl:service name="DirectPaymentAPI">
-    <wsdl:port name="DirectPaymentAPI" binding="impl:DirectPaymentAPISoapBinding">
-      <wsdlsoap:address location="https://homologation.payline.com/V4/services/DirectPaymentAPI"/>
+  <wsdl:service name="ExtendedAPI">
+    <wsdl:port name="ExtendedAPI" binding="impl:ExtendedAPISoapBinding">
+      <wsdlsoap:address location="https://homologation.payline.com/V4/services/ExtendedAPI"/>
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

@@ -2,8 +2,8 @@ const soap = require("soap");
 const wsdl = require("soap/lib/wsdl");
 const { promisify } = require("util");
 
-const productionWsdl = require("./WebPaymentAPI.v4.60.wsdl");
-const homologationWsdl = require("./WebPaymentAPI.v4.60.homologation.wsdl");
+const productionWsdl = require("./WebPaymentAPI.v4.66.1.wsdl");
+const homologationWsdl = require("./WebPaymentAPI.v4.66.1.homologation.wsdl");
 
 module.exports = class Payline {
   constructor(user, pass, environment = "production", customWsdl) {
